@@ -1,7 +1,6 @@
 import { createPool } from "mysql2/promise";
 import {
   DB_HOST,
-  DB_PASSWORD,
   DB_USER,
   DB_PORT,
   DB_NAME,
@@ -11,7 +10,6 @@ const createMyPool = () => {
   try {
     const pool = createPool({
       database: DB_NAME,
-      password: DB_PASSWORD,
       user: DB_USER,
       port: DB_PORT,
       host: DB_HOST,
