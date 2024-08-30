@@ -6,14 +6,36 @@ import {
   getTasksCtrl,
   updateTasksCrtl,
 } from "../controllers/tasks.controllers.js";
+import {
+  createTasksValidations,
+  updateTasksValidations,
+} from "../validations/tasks.validations.js";
+import { applyValidations } from "../middlewares/validations.middlewares.js";
 
 const tasksRoutes = Router();
-
+//GET
 tasksRoutes.get("/", getTasksCtrl);
-tasksRoutes.post("/", createTasksCtrl);
 
+//POST
+tasksRoutes.post(
+  "/",
+  createTasksValidations,
+  applyValidations,
+  createTasksCtrl
+);
+
+//GET BY ID
 tasksRoutes.get("/:id", findTaskByIdCtrl);
-tasksRoutes.patch("/:id", updateTasksCrtl); //el put si exite lo que quiero editar lo edita, sino lo crea
+
+//PATCH
+tasksRoutes.patch(
+  "/:id",
+  updateTasksValidations,
+  applyValidations,
+  updateTasksCrtl
+); //el PUT si exite lo que quiero editar lo edita, sino lo crea, en cambio el PATCH solo edita
+
+//DELETE
 tasksRoutes.delete("/:id", deleteTasksCrtl);
 
 export { tasksRoutes };
