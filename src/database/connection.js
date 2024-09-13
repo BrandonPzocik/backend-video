@@ -14,7 +14,7 @@ const createMyPool = () => {
       port: DB_PORT,
       host: DB_HOST,
     });
-
+    console.log("base de datos conectada");
     return pool;
   } catch (error) {
     console.log("Error al conectar la base de datos");
